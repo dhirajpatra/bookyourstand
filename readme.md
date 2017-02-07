@@ -10,7 +10,9 @@ Create the web application with the following requirements:
 7. Clicking on reserve takes the user to the registration page where he supposed to provide: contact details, upload marketing documents, company admin and company logo.
 8. Clicking on “Confirm Reservation” reserves the stand for the user, takes him to the exposition hall screen viewing the booked stand with the user’s company details on it.
 9. Finally the company admin receives a report by mail about the users of the stand after the event is over.
+
 ================================================================================================================
+
 How to install:
 This application has divided into 1. back end system which handling all REST API to process back end services along with database. 2. front end system which atcually need to run from server in browser.
 

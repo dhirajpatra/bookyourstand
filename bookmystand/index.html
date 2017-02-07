@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="myApp" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+      
+    <!--link href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css" rel="stylesheet" /-->
+    <link href="css/main.css" rel="stylesheet" />
+
+    <!-- Include the AngularJS library -->
+    <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script-->
+    <script src="js/shared/angular.js"></script>
+  </head>
+  <body>
+    
+    <div class="main" ng-controller="MainController" data-ng-init="init()">
+        
+        <div id="map">Event map will come here</div>
+        
+        <div id="book_your_place" style="display:none; float:right; margin: 30px 50%;">
+            <input type="button" style="color:red; font-weight:bold;" value="Book Your Place" onclick="window.location.href='registration.html'">
+        </div>  
+        
+    </div>
+	
+    <!-- Modules -->
+    <script src="js/app.js"></script> 
+           
+    <script>  
+        
+        // activate for booking
+        function activateBookButton(event_id)
+        { 
+            // enabling the book button
+            if(document.getElementById('book_your_place').style.display == 'none'){
+                document.getElementById('book_your_place').style.display = 'block';
+            }
+            
+            // setting cookie for event id
+            setCookie('event_id', event_id, 1);
+            //console.log(getCookie('event_id'));
+        }
+        
+        // to display map with markers    
+        function mapMarkers(locations)
+        {
+            if (typeof(locations) === 'undefined') {
+                alert('Kindly refresh the page/cache to get event listing');
+                locations = [
+                  ['Good Event1', 'Bondi Beach', -33.890542, 151.274856, 4, '2017-02-04 12:10:30', 1],
+                  ['Good Event2', 'Coogee Beach', -33.923036, 151.259052, 5, '2017-02-04 12:10:30', 1],
+                  ['Good Event3', 'Cronulla Beach', -34.028249, 151.157507, 3, '2017-02-04 12:10:30', 1],
+                  ['Good Event4', 'Manly Beach', -33.80010128657071, 151.28747820854187, 2, '2017-02-04 12:10:30', 1],
+                  ['Good Event5', 'Maroubra Beach', -33.950198, 151.259302, 1, '2017-02-04 12:10:30', 1]
+                ];
+            }        
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: new google.maps.LatLng(-33.92, 151.25),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {  
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][2], locations[i][3]),
+                map: map
+              });
+
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0] + ', ' + locations[i][1] + ', ' + Date(locations[i][4]));
+                    infowindow.open(map, marker);
+                    
+                    activateBookButton(locations[i][6]);
+                }
+              })(marker, i));
+            }
+        }
+    </script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+    
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4nJdDbVROLCH4iUHbfgTgmDU1G0zgm1U&callback=mapMarkers">
+    <script src="js/shared/gmaps.js"></script>
+     <script src="js/shared/common_helper.js"></script>
+
+  </body>
