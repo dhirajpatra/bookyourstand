@@ -61,3 +61,12 @@ http://cross/api/v1/bookmystand/reservestand
 [{"company_name":"good company","admin":"good admin","admin_email":"goodadmin@good.com","phone":"461333","add1":"good add1","add2":"good add2","zip":"64613", "stand_id":"2"}]
 
 
+https://github.com/dhirajpatra/bookyourstand/blob/master/documents/bookmystand.mp4
+
+https://github.com/dhirajpatra/bookyourstand/blob/master/documents/ER_diagram.png
+
+https://github.com/dhirajpatra/bookyourstand/blob/master/documents/bookyourstand.png
+
+https://github.com/dhirajpatra/bookyourstand/blob/master/documents/bookyourstanddfd.png
+
+
